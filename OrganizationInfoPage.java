@@ -1,10 +1,16 @@
 package pom;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import commonUtils.WebDriverUtil;
 
 public class OrganizationInfoPage {
 
+	WebDriverUtil wutil = new WebDriverUtil();
+	
 	//Identify Organization name
 	@FindBy(name="accountname")
 	private WebElement OrganizationNameTf;
@@ -37,5 +43,23 @@ public class OrganizationInfoPage {
 		return savebtn;
 	}
 	
+	//Create a constructor to initialize the WebElement 
+	public OrganizationInfoPage(WebDriver d){
+		PageFactory.initElements(d, this);
+	}
 	
+	//Create a method
+	public void OrganizationInfo(String Orgnamedata, String groupdata) {
+		//Enter Organization name
+		OrganizationNameTf.sendKeys(Orgnamedata);
+		
+		//Click on group radio button
+		groupbtn.click();
+		
+		//Select support group in the drop down
+		wutil.handleDropdown(dropdown, groupdata);
+		
+		//Click on Save button
+		savebtn.click();
+	}
 }

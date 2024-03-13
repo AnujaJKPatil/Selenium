@@ -1,7 +1,9 @@
 package pom;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
@@ -29,6 +31,18 @@ public class LoginPage {
 		return loginbtn;
 	}
 	
+	//Create a constructor to initialize the WebElement 
+	public LoginPage(WebDriver d) {
+		PageFactory.initElements(d, this);
+		
+	}
 	
+	//Create a method 
+	public void login(String usernamedata, String passworddata) {
+		usernametf.sendKeys(usernamedata);
+		passwordtf.sendKeys(passworddata);
+		loginbtn.click();
+	}
 	
+
 }

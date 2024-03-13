@@ -1,9 +1,13 @@
 package pom;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-public class HomePage {
+import commonUtils.WebDriverUtil;
+
+public class HomePage extends WebDriverUtil{
 
 	//Identify organization 
 	@FindBy(xpath="(//a[text()='Organizations'])[1]")
@@ -45,5 +49,21 @@ public class HomePage {
 		return signout;
 	}
 	
+	public HomePage(WebDriver d) {
+		PageFactory.initElements(d, this);
+	}
+	
+	public void home() {
+		//Click on organization
+		org.click();
+	}
+	
+	public void home(WebDriver d) { 
+		//Mouse hover in img
+		mouseHover(d, img);
+		
+		//Click on sign out
+		signout.click();
+	}
 	
 }
